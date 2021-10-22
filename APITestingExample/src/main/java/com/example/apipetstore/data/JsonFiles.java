@@ -7,7 +7,7 @@ import java.io.Reader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class GenerateData {
+public class JsonFiles {
 
     public static final String PATH_PET_REQUEST= "src/test/resources/data/request_pet.json";
 

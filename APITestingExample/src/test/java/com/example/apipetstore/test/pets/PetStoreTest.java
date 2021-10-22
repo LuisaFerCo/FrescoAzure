@@ -1,6 +1,7 @@
 package com.example.apipetstore.test.pets;
 
-import com.example.apipetstore.data.GenerateData;
+import com.example.apipetstore.data.DataFactory;
+import com.example.apipetstore.data.JsonFiles;
 import com.example.apipetstore.models.Pet;
 import com.example.apipetstore.steps.PetSteps;
 import net.serenitybdd.junit.runners.SerenityRunner;
@@ -12,7 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import static com.example.apipetstore.utils.StringManager.ID_PET;
+import static com.example.apipetstore.utils.Utilities.ID_PET;
 import static net.serenitybdd.rest.SerenityRest.restAssuredThat;
 
 @RunWith(SerenityRunner.class)
@@ -25,22 +26,19 @@ public class PetStoreTest {
     @Steps
     PetSteps vendor;
 
-
+    DataFactory dataFactory;
 
     @Before
     public void setData(){
-
+        dataFactory = new DataFactory();
     }
 
     @Test
     public void shouldAddANewPetToStore(){
-        Pet pet = GenerateData.getPetRequest();
-        vendor.createANewPet(pet);
-        vendor.shouldSeeANewIdPet(pet.getCategory().getId());
-        vendor.findPetById(vendor.getPetAddedToStore().getId());
-        vendor.shouldSeePet();
-        vendor.shouldSeeAvailable();
-        restAssuredThat(response -> response.body(ID_PET, Matchers.equalTo(pet.getId())));
+        vendor.createANewPet(dataFactory.buildPetRequest());
+        vendor.shouldSeeANewIdPet(dataFactory.getPet().getId());
+        vendor.findPetById(dataFactory.getPet().getId());
+        vendor.shouldSeePet(dataFactory.getPet());
     }
 
 

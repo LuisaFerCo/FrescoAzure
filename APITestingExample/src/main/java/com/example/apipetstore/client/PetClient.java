@@ -9,9 +9,8 @@ import static net.serenitybdd.rest.SerenityRest.given;
 public class PetClient {
 
     public static Response addNewPet(Pet pet){
-        pet.setId(5869);
         return given()
-                .spec(PetSpecs.createPetSpecs())
+                .spec(PetSpecs.createRequestSpecs())
                 .when()
                     .body(pet)
                     .post()
@@ -20,14 +19,15 @@ public class PetClient {
                     .response();
     }
 
-    public static Response findPetById(String id){
+    public static Response findPetById(int id){
         return given()
-                .spec(PetSpecs.getPetById(id))
+                .spec(PetSpecs.createRequestSpecs())
+                .pathParam("petId", id)
                 .when()
                 .get("/{petId}")
                 .then()
-                .spec(PetSpecs.successResponse())
-                .extract().response();
+                    .extract()
+                    .response();
     }
 
 

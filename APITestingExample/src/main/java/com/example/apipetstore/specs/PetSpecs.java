@@ -9,19 +9,13 @@ import org.apache.http.HttpStatus;
 
 public class PetSpecs {
 
-    public static RequestSpecification createPetSpecs(){
+    public static RequestSpecification createRequestSpecs(){
         return new RequestSpecBuilder()
                         .addRequestSpecification(InitialStateSpecs.set())
                         .setContentType(ContentType.JSON)
                         .build();
     }
 
-    public static RequestSpecification getPetById(String id){
-        return new RequestSpecBuilder().
-                addRequestSpecification(InitialStateSpecs.set()).
-                addPathParam("petId", id).
-                build();
-    }
 
     public static ResponseSpecification successResponse(){
         return new ResponseSpecBuilder()
