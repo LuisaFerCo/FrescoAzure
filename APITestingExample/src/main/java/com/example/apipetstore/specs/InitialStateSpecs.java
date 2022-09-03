@@ -10,7 +10,7 @@ public class InitialStateSpecs {
 
     public static RequestSpecification set() {
         return new RequestSpecBuilder().
-                setBaseUri("https://petstore.swagger.io/").
+                setBaseUri("https://petstore.swagger.io/v2").
                 setBasePath("/pet").
                 build();
     }
