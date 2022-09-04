@@ -1,11 +1,10 @@
 - 👋 
-  # API TESTING PROJECT
-  This project was built to improve the concepts about API testing. The tools that are using include Serenity Rest,
-  Gson, Lombok, and a little variation to POM design pattern in order to execute test cases as a well funcional test but without user Interface.
-    
-  ## API
-    The API Petstore was selected to create this project based to API testing. Sample petstore server you can get on https://petstore.swagger.io/. 
+  # API TESTING PROJECTS
+  API Testing projects contains multiple projects to learn how to implement differents testing frameworks and design patterns on automated API testing proyects
+
+  - 🐶 API Testing example 
+    It deals with a petstore API testing that implements Serenity Rest Assured and the Cucumber framework as well as the Page Object Model design pattern. 
+  
+    Sample petstore server you can get on https://petstore.swagger.io/. 
     The code can you get on https://github.com/swagger-api/swagger-petstore
-
-
 

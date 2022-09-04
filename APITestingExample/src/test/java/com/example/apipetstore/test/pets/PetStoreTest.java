@@ -1,20 +1,14 @@
 package com.example.apipetstore.test.pets;
 
 import com.example.apipetstore.data.DataFactory;
-import com.example.apipetstore.data.JsonFiles;
-import com.example.apipetstore.models.Pet;
 import com.example.apipetstore.steps.PetSteps;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.annotations.WithTag;
 import net.thucydides.core.annotations.WithTags;
-import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import static com.example.apipetstore.utils.Utilities.ID_PET;
-import static net.serenitybdd.rest.SerenityRest.restAssuredThat;
 
 @RunWith(SerenityRunner.class)
 @WithTags({

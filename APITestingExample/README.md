@@ -1,8 +1,17 @@
 
-# API TESTING PROJECT
-There are multiple API test automation projects created under following frameworks. 
--RestAssured
--Screenplay Rest
+# API TESTING EXAMPLE
+The petstore is a sample server Petstore 
+
+
+🧪 The Petstore's swagger can be found on this link https://petstore.swagger.io/
+
+🔧 Prerequisites
+
+🛠️ Installation
+
+🔩 Execution
+
+🔗 Links
 
 
 
