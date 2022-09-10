@@ -1,14 +1,16 @@
 package com.example.apipetstore.test.pets;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
 import com.example.apipetstore.data.DataFactory;
 import com.example.apipetstore.steps.PetSteps;
+
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.annotations.WithTag;
 import net.thucydides.core.annotations.WithTags;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 
 @RunWith(SerenityRunner.class)
 @WithTags({
