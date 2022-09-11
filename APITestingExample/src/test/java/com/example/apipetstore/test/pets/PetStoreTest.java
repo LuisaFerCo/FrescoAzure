@@ -27,11 +27,12 @@ public class PetStoreTest {
     @Before
     public void setData(){
         dataFactory = new DataFactory();
+        dataFactory.buildPetRequest();
     }
 
     @Test
     public void shouldAddANewPetToStore(){
-        vendor.createANewPet(dataFactory.buildPetRequest());
+        vendor.createANewPet(dataFactory.getPet());
         vendor.shouldSeeANewIdPet(dataFactory.getPet().getId());
         vendor.findPetById(dataFactory.getPet().getId());
         vendor.shouldSeePet(dataFactory.getPet());
