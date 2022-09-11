@@ -46,8 +46,8 @@ public class PetSteps {
 
     restAssuredThat(validatableResponse ->
         validatableResponse
-          .body("category.id", equalTo(1))
-          .body("category.name", equalTo("Dogs"))
+          .body("id", equalTo(expectedPet.getId()))
+          .body("category.name", equalTo(expectedPet.getCategory().getName()))
     );
   }
 }

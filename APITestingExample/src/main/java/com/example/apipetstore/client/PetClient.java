@@ -2,6 +2,7 @@ package com.example.apipetstore.client;
 
 import com.example.apipetstore.models.Pet;
 import com.example.apipetstore.specs.PetSpecs;
+
 import io.restassured.response.Response;
 
 import static net.serenitybdd.rest.SerenityRest.given;

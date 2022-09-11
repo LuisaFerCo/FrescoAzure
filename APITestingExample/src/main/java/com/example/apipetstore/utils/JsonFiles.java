@@ -1,4 +1,4 @@
-package com.example.apipetstore.data;
+package com.example.apipetstore.utils;
 
 import com.example.apipetstore.models.Pet;
 import com.google.gson.Gson;

@@ -1,14 +1,16 @@
 package com.example.apipetstore.test.pets;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
 import com.example.apipetstore.data.DataFactory;
 import com.example.apipetstore.steps.PetSteps;
+
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Steps;
 import net.thucydides.core.annotations.WithTag;
 import net.thucydides.core.annotations.WithTags;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
 
 @RunWith(SerenityRunner.class)
 @WithTags({
@@ -25,11 +27,12 @@ public class PetStoreTest {
     @Before
     public void setData(){
         dataFactory = new DataFactory();
+        dataFactory.buildPetRequest();
     }
 
     @Test
     public void shouldAddANewPetToStore(){
-        vendor.createANewPet(dataFactory.buildPetRequest());
+        vendor.createANewPet(dataFactory.getPet());
         vendor.shouldSeeANewIdPet(dataFactory.getPet().getId());
         vendor.findPetById(dataFactory.getPet().getId());
         vendor.shouldSeePet(dataFactory.getPet());
