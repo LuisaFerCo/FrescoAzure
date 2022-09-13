@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import com.example.apipetstore.data.DataFactory;
+import com.example.apipetstore.models.Pet;
 import com.example.apipetstore.steps.PetSteps;
 
 import net.serenitybdd.junit.runners.SerenityRunner;
@@ -26,16 +27,27 @@ public class PetStoreTest {
 
     @Before
     public void setData(){
-        dataFactory = new DataFactory();
-        dataFactory.buildPetRequest();
+       dataFactory = DataFactory.generateData();
     }
 
     @Test
-    public void shouldAddANewPetToStore(){
-        vendor.createANewPet(dataFactory.getPet());
-        vendor.shouldSeeANewIdPet(dataFactory.getPet().getId());
-        vendor.findPetById(dataFactory.getPet().getId());
-        vendor.shouldSeePet(dataFactory.getPet());
+    public void addNewPetWithExistingID() {
+        Pet pet = dataFactory.pet();
+        vendor.createANewPet(pet);
+        vendor.shouldSeeANewIdPet(pet.getId());
+        vendor.findPetById(pet.getId());
+        vendor.shouldSeePet(pet);
+    }
+
+    @Test
+    public void addNewPetWithNoID() {
+        Pet pet = dataFactory.genericPet();
+        vendor.createANewPet(pet);
+        long id = vendor.getPetID();
+        vendor.shouldSeeNewPetWithIdAssigned();
+        vendor.findPetById(id);
+        vendor.shouldSeePet(pet);
+
     }
 
 
