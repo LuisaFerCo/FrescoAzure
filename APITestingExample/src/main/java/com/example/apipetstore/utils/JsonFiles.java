@@ -11,7 +11,7 @@ public class JsonFiles {
 
     public static final String PATH_PET_REQUEST= "src/test/resources/data/request_pet.json";
 
-    public static Pet getPetRequest(){
+    public static Pet getPetTemplate(){
         Pet pet = null;
         try {
             Gson gson = new Gson();

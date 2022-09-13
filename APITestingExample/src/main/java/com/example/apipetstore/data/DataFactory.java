@@ -1,21 +1,19 @@
 package com.example.apipetstore.data;
 
 import com.example.apipetstore.models.Pet;
-import com.example.apipetstore.utils.JsonFiles;
-import com.example.apipetstore.utils.Utilities;
 
 public class DataFactory {
 
-    private Pet pet;
-
-    public Pet buildPetRequest(){
-        Pet newPet = JsonFiles.getPetRequest();
-        newPet.setId(Utilities.generateId());
-        this.pet = newPet;
-        return newPet;
+    public static DataFactory generateData(){
+        return new DataFactory();
     }
 
-    public Pet getPet() {
-        return pet;
+    public Pet pet() {
+       return NewPet.withNewId().buildPetRequest();
+    } 
+
+    public Pet genericPet() {
+        return GenericPet.noId().buildPetRequest();
     }
+    
 }
