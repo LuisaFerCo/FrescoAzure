@@ -31,6 +31,17 @@ public class PetClient {
                     .response();
     }
 
+    public static Response findPetById(long id){
+        return given()
+                .spec(PetSpecs.createRequestSpecs())
+                .pathParam("petId", id)
+                .when()
+                .get("/{petId}")
+                .then()
+                    .extract()
+                    .response();
+    }
+
 
 
 
