@@ -11,8 +11,8 @@ PetStoreTest file contains test cases focused on add a new pet to the store
 
 ## Prerequisites 🔧
 To run this project, you'll need:
--Java Runtime environment (JRE) or JAva Development Kit (JDK) version 11 - [download](https://adoptopenjdk.net/)
--Apache Maven version 2.8.6 or later [download](https://maven.apache.org/download.cgi) 
+- Java Runtime environment (JRE) or JAva Development Kit (JDK) version 11 - [download](https://adoptopenjdk.net/)
+- Apache Maven version 2.8.6 or later [download](https://maven.apache.org/download.cgi) 
 
 
 ## Installation 🛠️
