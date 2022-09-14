@@ -1,6 +1,7 @@
 package com.example.apipetstore.client;
 
 import com.example.apipetstore.models.Pet;
+import com.example.apipetstore.models.responses.PetResponse;
 import com.example.apipetstore.specs.PetSpecs;
 
 import io.restassured.response.Response;
@@ -37,6 +38,17 @@ public class PetClient {
                 .pathParam("petId", id)
                 .when()
                 .get("/{petId}")
+                .then()
+                    .extract()
+                    .response();
+    }
+
+    public static Response updateApet(PetResponse petRequest){
+        return given()
+                .spec(PetSpecs.createRequestSpecs())
+                .when()
+                    .body(petRequest)
+                    .put()
                 .then()
                     .extract()
                     .response();
