@@ -3,16 +3,14 @@ package com.example.apipetstore.steps;
 import static net.serenitybdd.rest.SerenityRest.restAssuredThat;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.mockito.ArgumentMatchers.isNotNull;
-
-import org.apache.http.HttpStatus;
-import org.hamcrest.Matchers;
 
 import com.example.apipetstore.client.PetClient;
 import com.example.apipetstore.models.Pet;
 import com.example.apipetstore.models.responses.PetResponse;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Step;
+import org.apache.http.HttpStatus;
+import org.hamcrest.Matchers;
 
 public class PetSteps {
 
@@ -23,8 +21,7 @@ public class PetSteps {
 
   @Step("should see id a new pet equal to {0}")
   public void shouldSeeANewIdPet(int idPet) {
-    SerenityRest.lastResponse().then()
-      .statusCode(HttpStatus.SC_OK);
+    SerenityRest.lastResponse().then().statusCode(HttpStatus.SC_OK);
 
     restAssuredThat(
       validatableResponse ->
@@ -34,20 +31,18 @@ public class PetSteps {
     );
   }
 
-@Step("get pet id response")
+  @Step("get pet id response")
   public long getPetID() {
-    
-    return SerenityRest.lastResponse().as(PetResponse.class)
-      .getId();
+    SerenityRest.then().statusCode(HttpStatus.SC_OK);
+    return SerenityRest.lastResponse().as(PetResponse.class).getId();
   }
 
   @Step("should see new pet with a new id assigned")
   public void shouldSeeNewPetWithIdAssigned() {
-    SerenityRest.lastResponse().then()
-      .statusCode(HttpStatus.SC_OK);
-    
-    restAssuredThat(response -> 
-      response.body("id", Matchers.anything("assigned pet id"))
+    SerenityRest.lastResponse().then().statusCode(HttpStatus.SC_OK);
+
+    restAssuredThat(
+      response -> response.body("id", Matchers.anything("assigned pet id"))
     );
   }
 
@@ -57,14 +52,14 @@ public class PetSteps {
   }
 
   @Step("Find pet By id '{0}'")
-  public void findPetById(long id) {
+  public PetResponse findPetById(long id) {
     PetClient.findPetById(id);
+    return SerenityRest.lastResponse().getBody().as(PetResponse.class);
   }
 
   @Step("should see pet")
   public void shouldSeePet(Pet expectedPet) {
-    SerenityRest.lastResponse().then()
-      .statusCode(HttpStatus.SC_OK);
+    SerenityRest.lastResponse().then().statusCode(HttpStatus.SC_OK);
 
     PetResponse petResponse = SerenityRest
       .lastResponse()
@@ -72,15 +67,38 @@ public class PetSteps {
       .as(PetResponse.class);
 
     assertThat(
-      "Theprevious pet has added is " + expectedPet.getName(),
+      "The previous pet has added is " + expectedPet.getName(),
       petResponse.getName(),
-        equalTo(expectedPet.getName())
+      equalTo(expectedPet.getName())
     );
 
     restAssuredThat(
       validatableResponse ->
-        validatableResponse
-          .body("category.name", equalTo(expectedPet.getCategory().getName()))
+        validatableResponse.body(
+          "category.name",
+          equalTo(expectedPet.getCategory().getName())
+        )
+    );
+  }
+
+  @Step("Update a pet adding a tag {0}")
+  public void updateAPet(PetResponse petResponse) {
+    PetClient.updateApet(petResponse);
+  }
+
+  @Step("Should get the pet updated")
+  public void shouldGetAPetUpdated(PetResponse pet) {
+    SerenityRest.lastResponse().then().statusCode(HttpStatus.SC_OK);
+
+    PetResponse petResponse = SerenityRest
+      .lastResponse()
+      .getBody()
+      .as(PetResponse.class);
+
+    assertThat(
+      "Items updated ",
+      pet.getTags(),
+      Matchers.containsInAnyOrder(petResponse.getTags().toArray())
     );
   }
 }
