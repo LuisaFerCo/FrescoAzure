@@ -9,6 +9,7 @@ idea/**/workspace.xml
 */.gradle/
 src/.idea
 /.idea
+*/.vscode/
 #Intellij
 */.idea/
 */.iml
