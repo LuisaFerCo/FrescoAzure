@@ -14,9 +14,12 @@
         <maven.compiler.source>11</maven.compiler.source>
         <serenity.cucumber.version>2.6.0</serenity.cucumber.version>
         <junit.version>4.13.2</junit.version>
-        <serenity.core.version>2.5.4</serenity.core.version>
+        <serenity.version>2.5.4</serenity.version>
         <lombok.version>1.18.20</lombok.version>
         <serenity.maven.version>2.5.8</serenity.maven.version>
+        <maven.surefire.version>3.0.0-M5</maven.surefire.version>
+        <maven.failsafe.version>3.0.0-M5</maven.failsafe.version>
+        <parallel.tests>3</parallel.tests>
         <encoding>UTF-8</encoding>
         <tags></tags>
     </properties>
@@ -24,17 +27,17 @@
         <dependency>
             <groupId>net.serenity-bdd</groupId>
             <artifactId>serenity-rest-assured</artifactId>
-            <version>${serenity.core.version}</version>
+            <version>${serenity.version}</version>
         </dependency>
         <dependency>
             <groupId>net.serenity-bdd</groupId>
             <artifactId>serenity-core</artifactId>
-            <version>${serenity.core.version}</version>
+            <version>${serenity.version}</version>
         </dependency>
         <dependency>
             <groupId>net.serenity-bdd</groupId>
             <artifactId>serenity-junit</artifactId>
-            <version>${serenity.core.version}</version>
+            <version>${serenity.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -72,11 +75,32 @@
               <plugin>
                   <groupId>org.apache.maven.plugins</groupId>
                   <artifactId>maven-surefire-plugin</artifactId>
-                  <version>3.0.0-M5</version>
+                  <version>${maven.surefire.version}</version>
                   <configuration>
-                      <testFailureIgnore>true</testFailureIgnore>
+                        <skip>true</skip>
+                        <!-- <testFailureIgnore>true</testFailureIgnore> -->
                   </configuration>
               </plugin>
+              <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-failsafe-plugin</artifactId>
+                <version>${maven.failsafe.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>integration-test</goal>
+                            <goal>verify</goal>
+                        </goals>
+                        <configuration>
+                            <includes>
+                                <include>**/PetStoreTest.java</include>
+                            </includes>
+                            <threadCount>${parallel.tests}</threadCount>
+                            <parallel>methods</parallel>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
               <plugin>
                   <groupId>net.serenity-bdd.maven.plugins</groupId>
                   <artifactId>serenity-maven-plugin</artifactId>

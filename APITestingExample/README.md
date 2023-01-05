@@ -25,7 +25,7 @@ mvn clean install
 ## Execution 🔩
 The project uses Maven + Junit that has configured plugin to publish a report after running all test Suite. Run the following command to run and generate the Serenity report:
 ```
-mvn test
+mvn verify
 ```
 
 ## Links 🔗
